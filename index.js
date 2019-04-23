@@ -20,7 +20,9 @@ class ContextStore {
         this.redis.keys(`${scope}:*`, callback)
     }
     delete(scope){
-
+        this.keys(scope, (error, keys) => {
+            keys.forEach(key => this.redis.del(key))
+        })
     }
     clean(_activeNodes){
 
