@@ -8,7 +8,7 @@ class ContextStore {
         this.redis = new Redis(this.config)
     }
     close() {
-        this.redis.close()
+        this.redis.disconnect()
     }
     get(scope, key, callback){
         this.redis.get(`${scope}:${key}`, callback)
