@@ -1,5 +1,5 @@
 {
-  "name": "red-context-redis",
+  "name": "node-red-context-redis",
   "version": "0.0.1-beta",
   "description": "Node Red Redis Context Plugin",
   "main": "index.js",
