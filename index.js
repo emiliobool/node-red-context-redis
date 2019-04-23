@@ -5,7 +5,7 @@ class ContextStore {
         this.config = config
     }
     open() {
-        this.redis = new Redis(config)
+        this.redis = new Redis(this.config)
     }
     close() {
         this.redis.close()
@@ -19,12 +19,12 @@ class ContextStore {
     keys(scope, callback){
         this.redis.keys(`${scope}:*`, callback)
     }
-    // delete(scope){
+    delete(scope){
 
-    // }
-    // clean(_activeNodes){
+    }
+    clean(_activeNodes){
 
-    // }
+    }
 }
 
 module.exports = function(config) {
