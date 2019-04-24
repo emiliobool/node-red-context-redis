@@ -11,18 +11,16 @@ class ContextStore {
         this.redis.disconnect()
     }
     get(scope, key, callback){
-        this.redis.get(`${scope}:${key}`, callback)
+        this.redis.hget(scope, key, callback)
     }
     set(scope, key, value, callback){
-        this.redis.set(`${scope}:${key}`, value, callback)
+        this.redis.hset(scope, key, value, callback)
     }
     keys(scope, callback){
-        this.redis.keys(`${scope}:*`, callback)
+        this.redis.hkeys(scope, callback)
     }
     delete(scope){
-        this.keys(scope, (error, keys) => {
-            keys.forEach(key => this.redis.del(key))
-        })
+        this.redis.del(scope)
     }
     clean(_activeNodes){
 
