@@ -10,21 +10,19 @@ class ContextStore {
     close() {
         this.redis.disconnect()
     }
-    get(scope, key, callback){
-        this.redis.hget(scope, key, callback)
+    get(scope, key, callback) {
+        this.redis.hget(scope, key, data => callback(JSON.parse(data)))
     }
-    set(scope, key, value, callback){
-        this.redis.hset(scope, key, value, callback)
+    set(scope, key, value, callback) {
+        this.redis.hset(scope, key, JSON.stringify(value), callback)
     }
-    keys(scope, callback){
+    keys(scope, callback) {
         this.redis.hkeys(scope, callback)
     }
-    delete(scope){
+    delete(scope) {
         this.redis.del(scope)
     }
-    clean(_activeNodes){
-
-    }
+    clean(_activeNodes) {}
 }
 
 module.exports = function(config) {
