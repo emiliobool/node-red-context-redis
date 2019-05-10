@@ -13,12 +13,12 @@ class ContextStore {
     get(scope, key, callback) {
         this.redis.hget(scope, key).then(value => {
             callback(JSON.parse(value))
-            console.log('callback', value)
+            console.log('callback', JSON.parse(value))
         })
         console.log('get', scope, key)
     }
     set(scope, key, value, callback) {
-        this.redis.hset(scope, key, JSON.stringify(value), callback)
+        this.redis.hset(scope, key, JSON.stringify(value)).then(callback)
     }
     keys(scope, callback) {
         this.redis.hkeys(scope, callback)
