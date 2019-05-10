@@ -11,7 +11,11 @@ class ContextStore {
         this.redis.disconnect()
     }
     get(scope, key, callback) {
-        this.redis.hget(scope, key, data => callback(JSON.parse(data)))
+        this.redis.hget(scope, key, value => {
+            callback(JSON.parse(value))
+            console.log('callback', value)
+        })
+        console.log('get', scope, key)
     }
     set(scope, key, value, callback) {
         this.redis.hset(scope, key, JSON.stringify(value), callback)
