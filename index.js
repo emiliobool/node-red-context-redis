@@ -11,7 +11,7 @@ class ContextStore {
         this.redis.disconnect()
     }
     get(scope, key, callback) {
-        this.redis.hget(scope, key, value => {
+        this.redis.hget(scope, key).then(value => {
             callback(JSON.parse(value))
             console.log('callback', value)
         })
